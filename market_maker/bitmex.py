@@ -149,11 +149,11 @@ class BitMEX(object):
         """Place an order."""
         if price < 0:
             raise Exception("Price must be positive.")
-
         postdict = {
             'symbol': self.symbol,
             'orderQty': quantity,
             'price': price,
+            'execInst': 'ParticipateDoNotInitiate',
             # Generate a unique clOrdID with our prefix so we can identify it.
             'clOrdID': self.orderIDPrefix + base64.b64encode(uuid.uuid4().bytes).decode('utf8').rstrip('=\n')
         }
